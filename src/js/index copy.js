@@ -13,9 +13,10 @@ const store = {
 };
 
 function App() {
+  // 업데이트 메뉴
+  // 상태는 변하는 데이터, 이 앱에서 변하는 것이 무엇인가 - 갯수, 메뉴명
   this.menu = [];
 
-  // 업데이트 메뉴
   const updateMenuCount = () => {
     const menuCount = $("#espresso-menu-list").querySelectorAll("li").length;
     $(".menu-count").innerText = `총 ${menuCount}개`;
@@ -32,9 +33,9 @@ function App() {
     this.menu.push({ name: espressoMenuName });
     store.setLocalStorage(this.menu);
     const template = this.menu
-      .map((item, index) => {
+      .map((item) => {
         return `
-        <li data-menu-id="${index}" class="menu-list-item d-flex items-center py-2">
+        <li data-menu-id="" class="menu-list-item d-flex items-center py-2">
             <span class="w-100 pl-2 menu-name">${item.name}</span>
             <button
                 type="button"
@@ -60,20 +61,15 @@ function App() {
 
   // 메뉴 수정
   const updateMenuName = (e) => {
-    const menuId = e.target.closest("li").dataset.menuId;
     const $menuName = e.target.closest("li").querySelector(".menu-name");
-    const updatedMenuName = prompt("메뉴명을 수정하세요.", $menuName.innerText);
-    this.menu[menuId].name = updatedMenuName;
-    store.setLocalStorage(this.menu);
-    $menuName.innerText = updatedMenuName;
+    const updateMenuName = prompt("메뉴명을 수정하세요.", $menuName.innerText);
+    this.menu
+    $menuName.innerText = updateMenuName;
   };
 
   // 메뉴 삭제
   const removeMenuName = (e) => {
     if (confirm("정말 삭제하시겠습니까?")) {
-      const menuId = e.target.closest("li").dataset.menuId;
-      this.menu.splice(menuId, 1);
-      store.setLocalStorage(this.menu);
       e.target.closest("li").remove();
       updateMenuCount();
     }
@@ -106,4 +102,4 @@ function App() {
   });
 }
 
-const app = new App();
+App();
