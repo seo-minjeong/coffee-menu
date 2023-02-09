@@ -30,10 +30,10 @@
 │   ├── css
 │     └── index.css
 │   ├── images
-├── js
-│   ├── api
-│     └── index.js
-│   ├── utils
-│     └── dom.js
+│   ├── js
+│     ├── api
+│       └── index.js
+│     ├── utils
+│       └── dom.js
 └── index.html
 ```
